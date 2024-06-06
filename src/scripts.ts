@@ -1,3 +1,9 @@
+// Currency price of the day
+const USD = 4.87;
+const EUR = 5.32;
+const GBP = 6.08;
+
+// Getting form elements:
 const form = document.querySelector('form') as HTMLFormElement;
 const amount = document.getElementById('amount') as HTMLInputElement;
 const currency = document.getElementById('currency') as HTMLSelectElement;
@@ -11,8 +17,23 @@ if (form && amount && currency) {
 
   form.onsubmit = (event) => {
     event.preventDefault();
-    console.log(currency.value);
+
+    switch (currency.value) {
+      case 'USD':
+        convertCurrency(amount.value, USD, 'US$');
+        break;
+      case 'EUR':
+        convertCurrency(amount.value, EUR, '€');
+        break;
+      case 'GBP':
+        convertCurrency(amount.value, GBP, '£');
+        break;
+    }
   };
 } else {
   console.error('Um ou mais elementos não foram encontrados.');
+}
+
+function convertCurrency(amount: string, price: number, symbol: string) {
+  console.log(amount, price, symbol);
 }
