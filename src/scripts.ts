@@ -38,7 +38,9 @@ if (form && amount && currency) {
 
 function convertCurrency(amount: string, price: number, symbol: string) {
   try {
-    description.textContent = `${symbol} 1 = ${price}`;
+    // Showing selected currency price
+    description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
+
     // Add the class that shows footer
     footer.classList.add('show-result');
   } catch (error) {
@@ -47,4 +49,11 @@ function convertCurrency(amount: string, price: number, symbol: string) {
     console.log(error);
     alert('Não foi possível converter. Tente novamente mais tarde.');
   }
+}
+
+function formatCurrencyBRL(value: number) {
+  return value.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
 }
