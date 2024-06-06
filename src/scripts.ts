@@ -43,7 +43,12 @@ function convertCurrency(amount: string, price: number, symbol: string) {
     description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
 
     let total = Number(amount) * price;
-    result.textContent = total.toString();
+
+    if (isNaN(total)) {
+      return alert('Por favor, digite o valor corretamente para converter.');
+    }
+
+    result.textContent = `${formatCurrencyBRL(total).replace('R$', '')} Reais`;
 
     // Add the class that shows footer
     footer.classList.add('show-result');
@@ -55,7 +60,7 @@ function convertCurrency(amount: string, price: number, symbol: string) {
   }
 }
 
-function formatCurrencyBRL(value: number) {
+function formatCurrencyBRL(value: number): string {
   return value.toLocaleString('pt-BR', {
     style: 'currency',
     currency: 'BRL',
