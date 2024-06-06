@@ -9,6 +9,7 @@ const amount = document.getElementById('amount') as HTMLInputElement;
 const currency = document.getElementById('currency') as HTMLSelectElement;
 const footer = document.querySelector('main footer') as HTMLElement;
 const description = document.getElementById('description') as HTMLSpanElement;
+const result = document.getElementById('result') as HTMLHeadingElement;
 
 if (form && amount && currency) {
   // making input amount to receive only numbers:
@@ -40,6 +41,9 @@ function convertCurrency(amount: string, price: number, symbol: string) {
   try {
     // Showing selected currency price
     description.textContent = `${symbol} 1 = ${formatCurrencyBRL(price)}`;
+
+    let total = Number(amount) * price;
+    result.textContent = total.toString();
 
     // Add the class that shows footer
     footer.classList.add('show-result');
